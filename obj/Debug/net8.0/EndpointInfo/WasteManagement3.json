@@ -2,7 +2,7 @@
   "openapi": "3.0.4",
   "info": {
     "title": "WasteCollection API",
-    "description": "API pour la gestion des collectes de déchets",
+    "description": "API for waste collection management",
     "version": "v1"
   },
   "paths": {
@@ -555,6 +555,25 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": [
+          "WasteManagement3"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }

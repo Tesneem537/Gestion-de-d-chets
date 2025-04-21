@@ -338,3 +338,4 @@ C:\Users\Lenovo\WASTE\WasteManagement3\WasteManagement3\bin\Debug\net8.0\WasteMa
 C:\Users\Lenovo\WASTE\WasteManagement3\WasteManagement3\obj\Debug\net8.0\WasteManagement3.genruntimeconfig.cache
 C:\Users\Lenovo\WASTE\WasteManagement3\WasteManagement3\obj\Debug\net8.0\ref\WasteManagement3.dll
 C:\Users\Lenovo\WASTE\WasteManagement3\WasteManagement3\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Lenovo\WASTE\WasteManagement3\WasteManagement3\obj\Debug\net8.0\WasteManagement3.sourcelink.json

@@ -10,11 +10,9 @@ using Microsoft.AspNetCore.Http.Features;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-// 🔥 Register Auth Service
 builder.Services.AddScoped<AuthService>();
 
-// Add DbContext for dependency injection
+// Add DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -26,7 +24,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "WasteCollection API",
         Version = "v1",
-        Description = "API pour la gestion des collectes de déchets"
+        Description = "API for waste collection management"
     });
 
     // JWT configuration for Swagger
@@ -55,10 +53,9 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // JWT Authentication Configuration
-var secretKey = builder.Configuration["Jwt:Key"];
+var secretKey = builder.Configuration["Jwt:Key"] ?? throw new InvalidOperationException("JWT Key not configured");
 var key = Encoding.UTF8.GetBytes(secretKey);
 
-// JWT Authentication and Authorization
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -110,12 +107,21 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+// Check for command-line argument before middleware setup
+if (args.Contains("update-weekly-stats"))
+{
+    await UpdateWeeklyStats(app.Services);
+    Console.WriteLine("✅ WeeklyStats table updated successfully!");
+    return;
+}
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Request logging middleware
 app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
@@ -125,6 +131,8 @@ app.Use(async (context, next) =>
 });
 
 app.MapControllers();
+
+app.MapGet("/", () => "Waste Management API is running...");
 
 app.Run();
 
@@ -140,41 +148,16 @@ async Task<string> FormatRequest(HttpRequest request)
            $"Headers:\n{string.Join("\n", request.Headers.Select(h => $"{h.Key}: {h.Value}"))}\n" +
            $"Body:\n{Encoding.UTF8.GetString(buffer)}";
 }
-if (args.Contains("update-weekly-stats"))
-{
-    await UpdateWeeklyStats(app.Services); // ⬅️ Yes, you can call this here
-    Console.WriteLine("✅ WeeklyStats table updated successfully!");
-    return;
-}
 
-app.MapGet("/", () => "API is running...");
-app.Run();
-
-
-// 🧠 This is your method outside the main pipeline
 static async Task UpdateWeeklyStats(IServiceProvider serviceProvider)
 {
     using var scope = serviceProvider.CreateScope();
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 
     var stats = await context.WeeklyStats.ToListAsync();
-
     foreach (var stat in stats)
     {
-        stat.TotalQuantity += 5; // Example logic
-       
+        stat.TotalQuantity += 5; // Adjust this with your actual logic
     }
-
     await context.SaveChangesAsync();
 }
-builder = WebApplication.CreateBuilder(args);
- app = builder.Build();
-
-if (args.Contains("update-weekly-stats"))
-{
-    await UpdateWeeklyStats(app.Services);
-    Console.WriteLine("WeeklyStats updated successfully!");
-    return;
-}
-
-app.Run();

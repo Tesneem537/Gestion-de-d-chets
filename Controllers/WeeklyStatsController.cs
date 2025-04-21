@@ -254,6 +254,7 @@ namespace WasteManagement3.Controllers
                     TotalQuantity = g.Sum(x => x.Quantity)
                 }).ToList();
 
+
             await _context.WeeklyStats.AddRangeAsync(stats);
             await _context.SaveChangesAsync();
 
