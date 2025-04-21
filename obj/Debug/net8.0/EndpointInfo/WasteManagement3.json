@@ -1,0 +1,1028 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "WasteCollection API",
+    "description": "API pour la gestion des collectes de déchets",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/admin/dashboard": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/addcollector": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CollectorDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CollectorDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CollectorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/addhotel": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HotelDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HotelDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HotelDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/addtruck": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TruckDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TruckDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TruckDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/addWasteType": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WasteDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WasteDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WasteDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/all-names": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/all-Hotels": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/all-waste": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/getStatistics": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/logout": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/changePassword": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/admin/generate-weekly-stats": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/collector/Enregistrer": {
+      "post": {
+        "tags": [
+          "Collecteur"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "CollectorName",
+                  "HotelName",
+                  "Quantity",
+                  "TruckName",
+                  "WasteTypeName"
+                ],
+                "type": "object",
+                "properties": {
+                  "CollectorName": {
+                    "type": "string"
+                  },
+                  "HotelName": {
+                    "type": "string"
+                  },
+                  "TruckName": {
+                    "type": "string"
+                  },
+                  "WasteTypeName": {
+                    "type": "string"
+                  },
+                  "Quantity": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Comment": {
+                    "type": "string"
+                  },
+                  "Photo": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "EntryTime": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              },
+              "encoding": {
+                "CollectorName": {
+                  "style": "form"
+                },
+                "HotelName": {
+                  "style": "form"
+                },
+                "TruckName": {
+                  "style": "form"
+                },
+                "WasteTypeName": {
+                  "style": "form"
+                },
+                "Quantity": {
+                  "style": "form"
+                },
+                "Comment": {
+                  "style": "form"
+                },
+                "Photo": {
+                  "style": "form"
+                },
+                "EntryTime": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WasteCollectionDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WasteCollectionDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WasteCollectionDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/collector/getCollector": {
+      "get": {
+        "tags": [
+          "Collecteur"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/hotel/add": {
+      "post": {
+        "tags": [
+          "Hotel"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Hotel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Hotel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Hotel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/hotel/getHotel": {
+      "get": {
+        "tags": [
+          "Hotel"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Role/admin-data": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Role/collector-data": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Role/hotel-data": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/truck/add": {
+      "post": {
+        "tags": [
+          "Truck"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Truck"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Truck"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Truck"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/users/getUsers": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/WasteType": {
+      "get": {
+        "tags": [
+          "WasteType"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WasteType"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WasteType"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WasteType"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/WeeklyStats/weekly-stats": {
+      "get": {
+        "tags": [
+          "WeeklyStats"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/WeeklyStats/run-ml": {
+      "post": {
+        "tags": [
+          "WeeklyStats"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WeeklyStatsDto"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WeeklyStatsDto"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/WeeklyStatsDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/WeeklyStats/autofill-weeklystats": {
+      "post": {
+        "tags": [
+          "WeeklyStats"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChangePasswordRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "oldPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "newPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "confirmPassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Collector": {
+        "type": "object",
+        "properties": {
+          "collectorID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "collectorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "wasteCollection": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WasteCollection"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CollectorDto": {
+        "type": "object",
+        "properties": {
+          "collectorName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Hotel": {
+        "required": [
+          "hotelName",
+          "wasteCollection"
+        ],
+        "type": "object",
+        "properties": {
+          "hotelID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hotelName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "wasteCollection": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WasteCollection"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "HotelDto": {
+        "type": "object",
+        "properties": {
+          "hotelName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Truck": {
+        "type": "object",
+        "properties": {
+          "truckID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "truckName": {
+            "type": "string",
+            "nullable": true
+          },
+          "wasteCollection": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WasteCollection"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TruckDto": {
+        "type": "object",
+        "properties": {
+          "truckName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WasteCollection": {
+        "type": "object",
+        "properties": {
+          "wasteCollectionID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "collectorID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "collector": {
+            "$ref": "#/components/schemas/Collector"
+          },
+          "hotelID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hotel": {
+            "$ref": "#/components/schemas/Hotel"
+          },
+          "truckName": {
+            "type": "string",
+            "nullable": true
+          },
+          "truckID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "truck": {
+            "$ref": "#/components/schemas/Truck"
+          },
+          "wasteTypeID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "wasteType": {
+            "$ref": "#/components/schemas/WasteType"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "entryTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "photo": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "collectorName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "hotelName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "wasteTypeName": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WasteCollectionDto": {
+        "required": [
+          "collectorName",
+          "hotelName",
+          "quantity",
+          "truckName",
+          "wasteTypeName"
+        ],
+        "type": "object",
+        "properties": {
+          "collectorName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "hotelName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "truckName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "wasteTypeName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "photo": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          },
+          "entryTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WasteDto": {
+        "type": "object",
+        "properties": {
+          "wasteTypeName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WasteType": {
+        "type": "object",
+        "properties": {
+          "wasteTypeID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "wasteTypeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "wasteCollection": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WasteCollection"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeeklyStatsDto": {
+        "required": [
+          "dayOfWeek",
+          "hotelName",
+          "wasteType"
+        ],
+        "type": "object",
+        "properties": {
+          "hotelId": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "hotelName": {
+            "maxLength": 100,
+            "minLength": 2,
+            "type": "string"
+          },
+          "weekNumber": {
+            "maximum": 52,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "dayOfWeek": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "wasteType": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "totalQuantity": {
+            "minimum": 0,
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

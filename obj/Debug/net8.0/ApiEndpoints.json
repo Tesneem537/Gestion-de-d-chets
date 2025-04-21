@@ -1,0 +1,405 @@
+[
+  {
+    "ContainingType": "AdminController",
+    "Method": "Add",
+    "RelativePath": "api/admin/addcollector",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CollectorDto",
+        "Type": "WasteManagement3.DTOs.CollectorDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "AddHotel",
+    "RelativePath": "api/admin/addhotel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "HotelDto",
+        "Type": "WasteManagement3.DTOs.HotelDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "AddTrucks",
+    "RelativePath": "api/admin/addtruck",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TruckDto",
+        "Type": "WasteManagement3.DTOs.TruckDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "AddWasteType",
+    "RelativePath": "api/admin/addWasteType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "WasteDto",
+        "Type": "WasteManagement3.DTOs.WasteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "GetAllHotelsNames",
+    "RelativePath": "api/admin/all-Hotels",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "GetAllCollectorNames",
+    "RelativePath": "api/admin/all-names",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "GetAllWasteTypeNames",
+    "RelativePath": "api/admin/all-waste",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/admin/changePassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "WasteManagement3.Models.ChangePasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "GetDashboard",
+    "RelativePath": "api/admin/dashboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "GenerateWeeklyStats",
+    "RelativePath": "api/admin/generate-weekly-stats",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "GetStatistics",
+    "RelativePath": "api/admin/getStatistics",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AdminController",
+    "Method": "Logout",
+    "RelativePath": "api/admin/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "WasteManagement3.Controllers.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userDto",
+        "Type": "WasteManagement3.Controllers.RegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.Collecteur",
+    "Method": "PostWasteCollection",
+    "RelativePath": "api/collector/Enregistrer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CollectorName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "HotelName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TruckName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "WasteTypeName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Quantity",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "Comment",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Photo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "EntryTime",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WasteCollectionDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.Collecteur",
+    "Method": "GetWasteCollectionsByCollectorName",
+    "RelativePath": "api/collector/getCollector",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.HotelController",
+    "Method": "AddHotel",
+    "RelativePath": "api/hotel/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hotel",
+        "Type": "WasteManagement3.Models.Hotel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.HotelController",
+    "Method": "GetWasteCollectionsByHotelName",
+    "RelativePath": "api/hotel/getHotel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.Role",
+    "Method": "GetAdminData",
+    "RelativePath": "api/Role/admin-data",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.Role",
+    "Method": "GetCollectorData",
+    "RelativePath": "api/Role/collector-data",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.Role",
+    "Method": "GetHotelData",
+    "RelativePath": "api/Role/hotel-data",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.TruckController",
+    "Method": "AddTruck",
+    "RelativePath": "api/truck/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "truck",
+        "Type": "WasteManagement3.Models.Truck",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.User",
+    "Method": "GetUsers",
+    "RelativePath": "api/users/getUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteTypeController",
+    "Method": "GetWasteTypes",
+    "RelativePath": "api/WasteType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WasteManagement3.Models.WasteType, WasteManagement3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.WeeklyStatsController",
+    "Method": "AutoFillWeeklyStats",
+    "RelativePath": "api/WeeklyStats/autofill-weeklystats",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.WeeklyStatsController",
+    "Method": "RunMLPrediction",
+    "RelativePath": "api/WeeklyStats/run-ml",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "System.Collections.Generic.List\u00601[[WasteManagement3.DTOs.WeeklyStatsDto, WasteManagement3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.WeeklyStatsController",
+    "Method": "GetWeeklyStats",
+    "RelativePath": "api/WeeklyStats/weekly-stats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
