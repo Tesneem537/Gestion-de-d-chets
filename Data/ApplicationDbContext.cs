@@ -39,14 +39,11 @@ namespace WasteManagement3.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<WeeklyStats>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.HotelName).HasMaxLength(100);
-                entity.Property(e => e.DayOfWeek).HasMaxLength(20);
-                entity.Property(e => e.WasteType).HasMaxLength(50);
-            });
+            modelBuilder.Entity<WeeklyStats>()
+         .HasIndex(s => new { s.WeekNumber, s.Year });
 
+            modelBuilder.Entity<WasteCollection>()
+                .HasIndex(w => w.EntryTime);
             // Configure GarageCheckin relationships
             //modelBuilder.Entity<GarageCheckin>()
             //    .HasKey(g => g.CheckinID);

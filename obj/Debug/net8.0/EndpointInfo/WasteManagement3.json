@@ -679,6 +679,18 @@
           }
         }
       }
+    },
+    "/api/WeeklyStats/low-frequency-visits": {
+      "get": {
+        "tags": [
+          "WeeklyStats"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

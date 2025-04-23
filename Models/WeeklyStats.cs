@@ -1,6 +1,5 @@
-﻿// Models/WeeklyStats.cs
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WasteManagement3.Models
 {
@@ -23,14 +22,18 @@ namespace WasteManagement3.Models
         public string DayOfWeek { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string WasteType { get; set; }
 
         [Required]
         public double TotalQuantity { get; set; }
+
         [Required]
         public int CollectorID { get; set; }
+
         [Required]
         public int Year { get; set; }
+
         [Required]
         public DateTime CreatedAt { get; set; }
     }

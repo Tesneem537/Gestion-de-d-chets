@@ -252,6 +252,7 @@ public class AdminController : ControllerBase
             })
             .ToList();
 
+
         // Optional: delete existing stats for this week (to avoid duplicates)
         var existingStats = _context.WeeklyStats
             .Where(w => w.WeekNumber == currentWeek && w.Year == currentYear)
@@ -265,6 +266,8 @@ public class AdminController : ControllerBase
 
         return Ok(new { message = "Weekly stats generated ✅", statsCount = groupedStats.Count });
     }
+   
+
 
 
 

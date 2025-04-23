@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Http.Features;
+using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,13 @@ builder.Services.AddScoped<AuthService>();
 // Add DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Configure Python script execution
+builder.Services.AddSingleton<PythonScriptService>(provider =>
+    new PythonScriptService(
+        builder.Configuration["PythonConfig:PythonExecutable"],
+        Path.Combine(Directory.GetCurrentDirectory(), builder.Configuration["PythonConfig:ScriptPath"])
+    ));
 
 // Add Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
@@ -160,4 +168,67 @@ static async Task UpdateWeeklyStats(IServiceProvider serviceProvider)
         stat.TotalQuantity += 5; // Adjust this with your actual logic
     }
     await context.SaveChangesAsync();
+}
+
+// Add this service class to handle Python script execution
+public class PythonScriptService
+{
+    private readonly string _pythonPath;
+    private readonly string _scriptPath;
+
+    public PythonScriptService(string pythonPath, string scriptPath)
+    {
+        _pythonPath = pythonPath ?? throw new ArgumentNullException(nameof(pythonPath));
+        _scriptPath = scriptPath ?? throw new ArgumentNullException(nameof(scriptPath));
+
+        if (!File.Exists(_pythonPath))
+            throw new FileNotFoundException($"Python executable not found at: {_pythonPath}");
+
+        if (!File.Exists(_scriptPath))
+            throw new FileNotFoundException($"Python script not found at: {_scriptPath}");
+    }
+
+    public async Task<string> ExecuteScriptAsync(string inputJson)
+    {
+        var psi = new ProcessStartInfo
+        {
+            FileName = _pythonPath,
+            Arguments = $"\"{_scriptPath}\"",
+            RedirectStandardInput = true,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+
+        using var process = new Process { StartInfo = psi };
+        try
+        {
+            process.Start();
+            await process.StandardInput.WriteAsync(inputJson);
+            process.StandardInput.Close();
+
+            string result = await process.StandardOutput.ReadToEndAsync();
+            string error = await process.StandardError.ReadToEndAsync();
+
+            if (!process.WaitForExit(5000))
+            {
+                process.Kill();
+                throw new TimeoutException("Python script execution timed out");
+            }
+
+            if (process.ExitCode != 0)
+            {
+                throw new Exception($"Python script failed with exit code {process.ExitCode}: {error}");
+            }
+
+            return result;
+        }
+        finally
+        {
+            process.Kill();
+        }
+
+    }
+
 }
