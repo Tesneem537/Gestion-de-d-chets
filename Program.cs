@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<ILocationService, LocationService>();  // <-- This is the missing line
 
 // Add DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -84,6 +85,7 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddAuthorization();
+builder.Services.AddHostedService<WeeklyStatsBackgroundService>();
 
 // Add CORS
 builder.Services.AddCors(options =>
@@ -228,7 +230,5 @@ public class PythonScriptService
         {
             process.Kill();
         }
-
     }
-
 }

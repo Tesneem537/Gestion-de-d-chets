@@ -19,6 +19,8 @@ namespace WasteManagement3.Data
         public DbSet<WasteType> WasteType { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<WeeklyStats> WeeklyStats { get; set; }
+        public DbSet<NFCdonnees> NFCdonnees { get; set; }
+
 
         // Configuring the connection string from appsettings.json or direct configuration
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

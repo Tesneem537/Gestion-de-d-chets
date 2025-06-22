@@ -20,36 +20,77 @@ namespace WasteManagement3.Controllers
             _authService = authService;
         }
 
-        // User Registration
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto userDto)
         {
-            if (userDto == null || string.IsNullOrEmpty(userDto.Email) || string.IsNullOrEmpty(userDto.Password))
-                return BadRequest(new { message = "Invalid user data" });
-
-            // Check if the user already exists
-            var existingUser = await _context.Users.SingleOrDefaultAsync(u => u.Email == userDto.Email);
-            if (existingUser != null)
-                return Conflict(new { message = "User already exists" });
-
-            // Hash the user's password using BCrypt
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
-
-            // Create new user
-            var newUser = new Users
+            try
             {
-                Email = userDto.Email,
-                PasswordHash = hashedPassword,
-                UserName = userDto.Name,
-                Role = userDto.Role
-            };
+                // Validate input
+                if (userDto == null || string.IsNullOrEmpty(userDto.Email) || string.IsNullOrEmpty(userDto.Password))
+                    return BadRequest(new { message = "Invalid user data" });
 
-            // Save to database
-            _context.Users.Add(newUser);
-            await _context.SaveChangesAsync();
+                // Check if user exists (case-insensitive)
+                var existingUser = await _context.Users
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(u => u.Email.ToLower() == userDto.Email.ToLower());
 
-            return Ok(new { message = "User registered successfully" });
+                if (existingUser != null)
+                    return Conflict(new { message = "User already exists" });
+
+                // Hash password
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
+
+                // Create transaction
+                using var transaction = await _context.Database.BeginTransactionAsync();
+
+                try
+                {
+                    // Create and save user
+                    var newUser = new Users
+                    {
+                        Email = userDto.Email,
+                        PasswordHash = hashedPassword,
+                        UserName = userDto.Name,
+                        Role = userDto.Role
+                    };
+
+                    _context.Users.Add(newUser);
+                    await _context.SaveChangesAsync();
+
+                    // SIMPLY ADD NAME TO RESPECTIVE TABLE
+                    if (userDto.Role == "Collector")
+                    {
+                        _context.Collector.Add(new Collector
+                        {
+                            CollectorName = userDto.Name // Only setting the name
+                        });
+                    }
+                    else if (userDto.Role == "Hotel")
+                    {
+                        _context.Hotel.Add(new Hotel
+                        {
+                            HotelName = userDto.Name // Only setting the name
+                        });
+                    }
+
+                    await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+
+                    return Ok(new { message = "User registered successfully" });
+                }
+                catch
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
+            }
         }
+
+
 
         // User Login (Generate JWT Token)
         [HttpPost("login")]
@@ -70,9 +111,9 @@ namespace WasteManagement3.Controllers
             // Generate JWT token
             var token = _authService.GenerateJwtToken(user);
 
-            return Ok(new { token , role = user.Role });
+            return Ok(new { token, role = user.Role });
         }
-    }
+    } }
 
     // DTO for Registering a User
     public class RegisterDto
@@ -91,4 +132,4 @@ namespace WasteManagement3.Controllers
     }
 
 
-}
+

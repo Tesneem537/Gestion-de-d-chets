@@ -480,6 +480,37 @@
         }
       }
     },
+    "/api/NfcDonnees/scan": {
+      "post": {
+        "tags": [
+          "NfcDonnees"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NfcScanDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NfcScanDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/NfcScanDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Role/admin-data": {
       "get": {
         "tags": [
@@ -628,39 +659,21 @@
         }
       }
     },
-    "/api/WeeklyStats/run-ml": {
+    "/api/WeeklyStats/autofill-weeklystats": {
       "post": {
         "tags": [
           "WeeklyStats"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/WeeklyStatsDto"
-                }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/WeeklyStatsDto"
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/WeeklyStatsDto"
-                }
-              }
+        "parameters": [
+          {
+            "name": "forceRefresh",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -668,10 +681,28 @@
         }
       }
     },
-    "/api/WeeklyStats/autofill-weeklystats": {
+    "/api/WeeklyStats/run-ml": {
       "post": {
         "tags": [
           "WeeklyStats"
+        ],
+        "parameters": [
+          {
+            "name": "weekNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -681,6 +712,52 @@
       }
     },
     "/api/WeeklyStats/low-frequency-visits": {
+      "get": {
+        "tags": [
+          "WeeklyStats"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/WeeklyStats/historical-data": {
+      "get": {
+        "tags": [
+          "WeeklyStats"
+        ],
+        "parameters": [
+          {
+            "name": "weeks",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/WeeklyStats/check-week-calculation": {
+      "get": {
+        "tags": [
+          "WeeklyStats"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/WeeklyStats/daily-waste": {
       "get": {
         "tags": [
           "WeeklyStats"
@@ -790,6 +867,25 @@
             "nullable": true
           },
           "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NfcScanDto": {
+        "type": "object",
+        "properties": {
+          "tagId": {
+            "type": "string",
+            "nullable": true
+          },
+          "scanTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "location": {
             "type": "string",
             "nullable": true
           }
@@ -996,47 +1092,6 @@
               "$ref": "#/components/schemas/WasteCollection"
             },
             "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "WeeklyStatsDto": {
-        "required": [
-          "dayOfWeek",
-          "hotelName",
-          "wasteType"
-        ],
-        "type": "object",
-        "properties": {
-          "hotelId": {
-            "maximum": 2147483647,
-            "minimum": 1,
-            "type": "integer",
-            "format": "int32"
-          },
-          "hotelName": {
-            "maxLength": 100,
-            "minLength": 2,
-            "type": "string"
-          },
-          "weekNumber": {
-            "maximum": 52,
-            "minimum": 1,
-            "type": "integer",
-            "format": "int32"
-          },
-          "dayOfWeek": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "wasteType": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "totalQuantity": {
-            "minimum": 0,
-            "type": "number",
-            "format": "double"
           }
         },
         "additionalProperties": false

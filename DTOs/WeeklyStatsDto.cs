@@ -25,14 +25,19 @@ namespace WasteManagement3.DTOs
         public string HotelName { get; set; }
         public double TotalQuantity { get; set; }
         public int Cluster { get; set; }
+        public string ClusterLabel { get; set; } 
     }
+
 
     public class MLResultDto
     {
         public double PredictedNextWeekQuantity { get; set; }
+        public string Trend { get; set; } 
         public List<HotelClusterDto> HotelClusters { get; set; }
+        public Dictionary<int, int> ClusterSummary { get; set; } 
         public string Message { get; set; }
     }
+
 
     public class WeeklyStatsDto
     {

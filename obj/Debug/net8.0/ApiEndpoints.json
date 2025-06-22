@@ -177,7 +177,7 @@
     "Parameters": [
       {
         "Name": "loginDto",
-        "Type": "WasteManagement3.Controllers.LoginDto",
+        "Type": "LoginDto",
         "IsRequired": true
       }
     ],
@@ -193,7 +193,7 @@
     "Parameters": [
       {
         "Name": "userDto",
-        "Type": "WasteManagement3.Controllers.RegisterDto",
+        "Type": "RegisterDto",
         "IsRequired": true
       }
     ],
@@ -309,6 +309,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "WasteManagement3.Controllers.NfcDonneesController",
+    "Method": "Scan",
+    "RelativePath": "api/NfcDonnees/scan",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "scan",
+        "Type": "WasteManagement3.DTOs.NfcScanDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "WasteManagement3.Controllers.Role",
     "Method": "GetAdminData",
     "RelativePath": "api/Role/admin-data",
@@ -391,7 +407,49 @@
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
+    "Parameters": [
+      {
+        "Name": "forceRefresh",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.WeeklyStatsController",
+    "Method": "CheckWeekCalculation",
+    "RelativePath": "api/WeeklyStats/check-week-calculation",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.WeeklyStatsController",
+    "Method": "GetDailyWasteTrend",
+    "RelativePath": "api/WeeklyStats/daily-waste",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WasteManagement3.Controllers.WeeklyStatsController",
+    "Method": "GetHistoricalData",
+    "RelativePath": "api/WeeklyStats/historical-data",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "weeks",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -413,9 +471,14 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "data",
-        "Type": "System.Collections.Generic.List\u00601[[WasteManagement3.DTOs.WeeklyStatsDto, WasteManagement3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "IsRequired": true
+        "Name": "weekNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
